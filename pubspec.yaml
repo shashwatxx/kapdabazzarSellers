@@ -16,7 +16,9 @@ dependencies:
   rxdart: ^0.23.1
   flare_flutter: ^2.0.1
   flutter_shimmer: ^1.2.0
-  # url_launcher: ^5.4.2
+  firebase_storage:
+  file_picker: ^1.5.0+2
+  url_launcher:
 
 dev_dependencies:
   flutter_test:

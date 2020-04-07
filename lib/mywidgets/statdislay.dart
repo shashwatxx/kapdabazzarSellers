@@ -27,44 +27,55 @@ class StatDisplayROw extends StatelessWidget {
 
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    heading,
+                    style: mystyle,
+                  ),
+                  Icon(
+                    icon,
+                    size: mysize.width * 0.10,
+                  )
+                ],
+              ),
+            ),
+          ),
+          // SizedBox(
+          //   width: sizedBoxwidth,
+          // ),
+          Align(
+            alignment: Alignment.bottomCenter,
             child: Column(
               children: <Widget>[
                 Text(
-                  heading,
-                  style: mystyle,
+                  stat1,
+                  style:
+                      TextStyle(fontSize: mysize.width * 0.09, color: mycolor),
                 ),
-                Icon(
-                  icon,
-                  size: mysize.width * 0.10,
-                )
+                Text(stat1Detail),
               ],
             ),
           ),
-          SizedBox(
-            width: sizedBoxwidth,
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                stat1,
-                style: TextStyle(fontSize: mysize.width * 0.09, color: mycolor),
-              ),
-              Text(stat1Detail),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                stat2,
-                style: TextStyle(fontSize: mysize.width * 0.09, color: mycolor),
-              ),
-              Text(stat2Detail),
-            ],
+          Align(
+            alignment: Alignment.centerRight,
+            child: Column(
+              children: <Widget>[
+                Text(
+                  stat2,
+                  style:
+                      TextStyle(fontSize: mysize.width * 0.09, color: mycolor),
+                ),
+                Text(stat2Detail),
+              ],
+            ),
           )
         ],
       ),

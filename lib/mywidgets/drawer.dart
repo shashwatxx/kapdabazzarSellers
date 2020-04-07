@@ -1,4 +1,3 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kapdabazzarsellers/pages/product.dart';
@@ -14,14 +13,10 @@ class MyDrawer extends StatefulWidget {
   _MyDrawerState createState() => _MyDrawerState();
 }
 
-class _MyDrawerState extends State<MyDrawer>
-    with SingleTickerProviderStateMixin {
-  Animation<double> animation;
-
-  AnimationController controller;
-
+class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -41,7 +36,7 @@ class _MyDrawerState extends State<MyDrawer>
                     Text(
                       "Pankaj Chawla",
                       style: GoogleFonts.offside(
-                          color: Colors.white, fontSize: 30),
+                          color: Colors.white, fontSize: width * 0.05),
                     ),
                   ],
                 ),

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kapdabazzarsellers/mywidgets/drawer.dart';
 import 'package:kapdabazzarsellers/mywidgets/statdislay.dart';
-import 'package:kapdabazzarsellers/pages/product.dart';
+
 import 'package:kapdabazzarsellers/scoped-models/main.dart';
 import 'package:scoped_model/scoped_model.dart';
 import '../const.dart';
@@ -36,6 +36,8 @@ class _HomePageState extends State<HomePage> {
 
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
+        model.saveCurrentUserDetails();
+
         return Scaffold(
           key: _scaffoldKey,
           drawer: MyDrawer(
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                       padding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 50),
                       child: Text(
-                        "Welcome PANKAJ",
+                        "Welcome ${model.currentSellerDetail['sellerName']}",
                         style: GoogleFonts.annieUseYourTelescope(
                           fontSize: 40,
                         ),

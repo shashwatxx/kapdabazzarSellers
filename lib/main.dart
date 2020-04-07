@@ -1,16 +1,15 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:kapdabazzarsellers/const.dart';
 import 'package:kapdabazzarsellers/pages/about.dart';
 import 'package:kapdabazzarsellers/pages/auth.dart';
 import 'package:kapdabazzarsellers/pages/home.dart';
-import 'package:kapdabazzarsellers/pages/register.dart';
+
 import 'package:kapdabazzarsellers/pages/supportpage.dart';
 
-import './models/product.dart';
 import './scoped-models/main.dart';
 import 'package:scoped_model/scoped_model.dart';
-
-import 'pages/product.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -27,12 +26,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
-  bool _isAuthenticated = false;
+
   @override
   void initState() {
-    _model.signinUser();
-    _model.getCurrentUser();
-
     super.initState();
   }
 
@@ -45,9 +41,8 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (BuildContext context) =>
-              !_isAuthenticated ? AuthPage() : HomePage(),
+              !_model.isAuthenticated ? AuthPage() : HomePage(),
           "/homepage": (BuildContext context) => HomePage(),
-          '/register': (BuildContext context) => RegisterPage(),
           '/support': (BuildContext context) => SupportPages(),
           '/about': (BuildContext context) => AboutPage(),
         },

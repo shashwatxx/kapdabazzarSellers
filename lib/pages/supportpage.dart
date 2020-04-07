@@ -1,53 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kapdabazzarsellers/const.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SupportPages extends StatelessWidget {
 // _launchURL() async {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-//   const url = 'https://flutter.dev';
-//   if (await canLaunch(url)) {
-//     await launch(url);
-//   } else {
-//     throw 'Could not launch $url';
-  // }
 
-  // _launchURLCall1() async {
-  //   String url = 'tel:+919131246125';
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Could no launch $url';
-  //   }
-  // }
+  _launchURLCall1() async {
+    String url = 'tel:+919131246125';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could no launch $url';
+    }
+  }
 
-  // _launchURLCall2() async {
-  //   String url = 'tel:+917400840088';
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Could no launch $url';
-  //   }
-  // }
+  _launchURLCall2() async {
+    String url = 'tel:+917400840088';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could no launch $url';
+    }
+  }
 
-  // _launchURLMail1() async {
-  //   String url = 'mailto:admin@kapdabazzar.com?subject=Need Support';
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Could no launch $url';
-  //   }
-  // }
+  _launchURLMail1() async {
+    String url = 'mailto:admin@kapdabazzar.com?subject=Need Support';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could no launch $url';
+    }
+  }
 
-  // _launchURLMail2() async {
-  //   String url = 'mailto:kapdabazzar775@gmail.com?subject=Need Support';
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Could no launch $url';
-  //   }
-  // }
+  _launchURLMail2() async {
+    String url = 'mailto:kapdabazzar775@gmail.com?subject=Need Support';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could no launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +68,7 @@ class SupportPages extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
-              // onTap: _launchURLCall1,
+              onTap: _launchURLCall1,
               child: Text(
                 '+919131246125',
                 style: TextStyle(color: Colors.blueGrey, fontSize: 20),
@@ -85,7 +79,7 @@ class SupportPages extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
-              // onTap: _launchURLCall2,
+              onTap: _launchURLCall2,
               child: Text(
                 '+917400840088',
                 style: TextStyle(color: Colors.blueGrey, fontSize: 20),
@@ -96,7 +90,7 @@ class SupportPages extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
-              // onTap: _launchURLMail1,
+              onTap: _launchURLMail1,
               child: Text(
                 'admin@kapdabazzar.com',
                 style: TextStyle(color: Colors.blueGrey, fontSize: 20),
@@ -107,7 +101,7 @@ class SupportPages extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
-              // onTap: _launchURLMail2,
+              onTap: _launchURLMail2,
               child: Text(
                 'kapdabazzar775@gmail.com',
                 style: TextStyle(color: Colors.blueGrey, fontSize: 20),
@@ -175,12 +169,12 @@ class SupportPages extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(top: 0.0),
-                  child: Image.asset("assets/image_01.png"),
+                  // child: Image.asset("assets/image_01.png"),
                 ),
                 Expanded(
                   child: Container(),
                 ),
-                Image.asset("assets/image_02.png")
+                // Image.asset("assets/image_02.png")
               ],
             ),
             Center(

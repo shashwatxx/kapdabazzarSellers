@@ -5,11 +5,20 @@ class SoftUiTextField extends StatelessWidget {
   final bool obscureText;
   final Function validator;
   final bool autofocus;
+  final Function onSaved;
+  final TextInputType keyboardType;
+  final Function onChanged;
+
+  // final KeyboardType
+
   SoftUiTextField(
       {this.hintText,
+      this.onSaved,
       this.obscureText = false,
       this.validator,
-      this.autofocus = false});
+      this.autofocus = false,
+      this.keyboardType,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +38,10 @@ class SoftUiTextField extends StatelessWidget {
             spreadRadius: 3.0)
       ]),
       child: TextFormField(
+        // maxLines: maxLines,
+        onChanged: onChanged,
+        keyboardType: keyboardType,
+        onSaved: onSaved,
         obscureText: obscureText,
         decoration: InputDecoration(
           border: InputBorder.none,
