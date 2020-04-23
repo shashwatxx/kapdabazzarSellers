@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:kapdabazzarsellers/const.dart';
 import 'package:kapdabazzarsellers/pages/about.dart';
+
 import 'package:kapdabazzarsellers/pages/auth.dart';
 import 'package:kapdabazzarsellers/pages/home.dart';
 
@@ -29,6 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    // _model.autoLogin();
     super.initState();
   }
 
@@ -40,11 +40,11 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (BuildContext context) =>
-              !_model.isAuthenticated ? AuthPage() : HomePage(),
+          '/': (BuildContext context) => AuthPage(),
           "/homepage": (BuildContext context) => HomePage(),
           '/support': (BuildContext context) => SupportPages(),
           '/about': (BuildContext context) => AboutPage(),
+          // '/addproduct': (BuildContext context) => AddProduct()
         },
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute(builder: (BuildContext context) {
@@ -58,8 +58,10 @@ class _MyAppState extends State<MyApp> {
               iconTheme: IconThemeData(color: mycolor),
               elevation: 0,
             ),
+            primaryColor: mycolor,
+            // primaryIconTheme: IconThemeData(color: mycolor),
             iconTheme: IconThemeData(
-              color: Color(0xFFFF5252),
+              color: mycolor,
             )),
       ),
     );

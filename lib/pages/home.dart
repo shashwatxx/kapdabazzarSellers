@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kapdabazzarsellers/mywidgets/drawer.dart';
 import 'package:kapdabazzarsellers/mywidgets/statdislay.dart';
+import 'package:kapdabazzarsellers/pages/productaddition.dart';
 
 import 'package:kapdabazzarsellers/scoped-models/main.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -36,9 +37,19 @@ class _HomePageState extends State<HomePage> {
 
     return ScopedModelDescendant(
       builder: (BuildContext context, Widget child, MainModel model) {
-        model.saveCurrentUserDetails();
-
         return Scaffold(
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            backgroundColor: mycolor,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => ProductDaloPage(),
+                ),
+              );
+            },
+          ),
           key: _scaffoldKey,
           drawer: MyDrawer(
             model: model,
@@ -100,11 +111,12 @@ class _HomePageState extends State<HomePage> {
                     StatDisplayROw(
                       mysize: mysize,
                       heading: "ORDERS",
+
                       icon: Icons.open_in_browser,
-                      stat1: "45",
-                      stat2: '19361',
-                      stat1Detail: 'Total Orders',
-                      stat2Detail: 'Value of Orders',
+                      // stat1: "45",
+                      // stat2: '19361',
+                      // stat1Detail: 'Total Orders',
+                      // stat2Detail: 'Value of Orders',
                     ),
                     Divider(
                       color: mycolor,
@@ -113,10 +125,10 @@ class _HomePageState extends State<HomePage> {
                       mysize: mysize,
                       heading: "PRODUCTS",
                       icon: Icons.offline_pin,
-                      stat1: "908",
-                      stat2: '350',
-                      stat1Detail: 'Total',
-                      stat2Detail: 'Active',
+                      // stat1: "908",
+                      // stat2: '350',
+                      // stat1Detail: 'Total',
+                      // stat2Detail: 'Active',
                       // sizedBoxwidth: 40,
                     ),
                     Divider(
@@ -126,10 +138,10 @@ class _HomePageState extends State<HomePage> {
                       mysize: mysize,
                       heading: "PAYOUT",
                       icon: Icons.account_balance_wallet,
-                      stat1: "₹ 24040",
-                      stat2: '₹ 18077',
-                      stat1Detail: '7th June 2019',
-                      stat2Detail: 'Next Payout',
+                      // stat1: "₹ 24040",
+                      // stat2: '₹ 18077',
+                      // stat1Detail: '7th June 2019',
+                      // stat2Detail: 'Next Payout',
                     ),
                     Divider(
                       color: mycolor,
@@ -138,10 +150,10 @@ class _HomePageState extends State<HomePage> {
                       mysize: mysize,
                       heading: "CUSTOMER \nREVIEWS",
                       icon: Icons.open_in_browser,
-                      stat1: "0",
-                      stat2: '2.69',
-                      stat1Detail: 'Last order review',
-                      stat2Detail: 'Average Rating',
+                      // stat1: "0",
+                      // stat2: '2.69',
+                      // stat1Detail: 'Last order review',
+                      // stat2Detail: 'Average Rating',
                     ),
                     Divider(
                       color: mycolor,
@@ -150,9 +162,9 @@ class _HomePageState extends State<HomePage> {
                       mysize: mysize,
                       heading: "RETURNS",
                       icon: Icons.reply,
-                      stat1: "3",
+                      // stat1: "3",
                       // stat2: '2.69',
-                      stat1Detail: 'Returns',
+                      // stat1Detail: 'Returns',
                       // stat2Detail: 'Average Rating',
                     ),
                     Divider(

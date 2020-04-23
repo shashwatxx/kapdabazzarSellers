@@ -21,12 +21,13 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     setState(() {
-      firebaseStorage = widget.model.getStorageRefrence();
+      // firebaseStorage = widget.model.getStorageRefrence();
     });
     super.initState();
   }
 
-  StorageReference firebaseStorage;
+//
+  // StorageReference firebaseStorage;
   //  StorageReference firebaseStorage;
   String _localFileUrl = null;
 
@@ -408,13 +409,13 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() {
       _localFileUrl = widget.model.file.path;
 
-      final StorageUploadTask task = firebaseStorage.putFile(widget.model.file);
-      if (task.isComplete) {
-        firebaseStorage.getDownloadURL();
-        widget.model.fileUploadingStatus = "Uploaded Succesfully";
-        print("The Download url is " + uploadedFileUrl);
-        _formData['uploadedFileUrl'] = uploadedFileUrl;
-      }
+      // final StorageUploadTask task = firebaseStorage.putFile(widget.model.file);
+      // if (task.isComplete) {
+      //   firebaseStorage.getDownloadURL();
+      //   widget.model.fileUploadingStatus = "Uploaded Succesfully";
+      //   print("The Download url is " + uploadedFileUrl);
+      //   _formData['uploadedFileUrl'] = uploadedFileUrl;
+      // }
     });
   }
 }

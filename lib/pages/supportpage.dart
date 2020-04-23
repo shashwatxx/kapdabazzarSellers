@@ -51,78 +51,81 @@ class SupportPages extends StatelessWidget {
       shape: ContinuousRectangleBorder(
         borderRadius: BorderRadius.circular(40),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            height: 15,
-          ),
-          Text(
-            "For Support & Info\n",
-            style: TextStyle(
-                color: Colors.redAccent,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: GestureDetector(
-              onTap: _launchURLCall1,
-              child: Text(
-                '+919131246125',
-                style: TextStyle(color: Colors.blueGrey, fontSize: 20),
-                textAlign: TextAlign.center,
+      child: Padding(
+        padding: const EdgeInsets.all(40.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              "For Support & Info\n",
+              style: TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: _launchURLCall1,
+                child: Text(
+                  '+919131246125',
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: GestureDetector(
-              onTap: _launchURLCall2,
-              child: Text(
-                '+917400840088',
-                style: TextStyle(color: Colors.blueGrey, fontSize: 20),
-                textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: _launchURLCall2,
+                child: Text(
+                  '+917400840088',
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: GestureDetector(
-              onTap: _launchURLMail1,
-              child: Text(
-                'admin@kapdabazzar.com',
-                style: TextStyle(color: Colors.blueGrey, fontSize: 20),
-                textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: _launchURLMail1,
+                child: Text(
+                  'admin@kapdabazzar.com',
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: GestureDetector(
-              onTap: _launchURLMail2,
-              child: Text(
-                'kapdabazzar775@gmail.com',
-                style: TextStyle(color: Colors.blueGrey, fontSize: 20),
-                textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: _launchURLMail2,
+                child: Text(
+                  'kapdabazzar775@gmail.com',
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          // MaterialButton(
-          //   color: Colors.orangeAccent,
-          //   child: Text(
-          //     "Go Back",
-          //     style: TextStyle(color: Colors.white),
-          //   ),
-          //   onPressed: () {
-          //     Navigator.pop(context);
-          //   },
-          // ),
-          SizedBox(
-            height: 15,
-          ),
-        ],
+            // MaterialButton(
+            //   color: Colors.orangeAccent,
+            //   child: Text(
+            //     "Go Back",
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            //   onPressed: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
+            SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
       ),
     );
     double width = MediaQuery.of(context).size.width;

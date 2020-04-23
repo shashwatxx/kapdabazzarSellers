@@ -42,15 +42,12 @@ class StatDisplayROw extends StatelessWidget {
                   ),
                   Icon(
                     icon,
-                    size: mysize.width * 0.10,
+                    size: mysize.width * 0.09,
                   )
                 ],
               ),
             ),
           ),
-          // SizedBox(
-          //   width: sizedBoxwidth,
-          // ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Column(

@@ -10,12 +10,28 @@ import 'package:kapdabazzarsellers/scoped-models/main.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class AuthPage extends StatefulWidget {
+  // MainModel model;
+  // AuthPage(this.model);
+
   @override
   _AuthPageState createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
   // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // setState(() {
+    //   widget.model.autoLogin();
+    //   if (widget.model.isAuthenticated == true) {
+    //     Navigator.pushReplacementNamed(context, '/homepage');
+    //   }
+    // });
+
+    super.initState();
+  }
+
   String email;
   String password;
 
@@ -26,11 +42,6 @@ class _AuthPageState extends State<AuthPage> {
     if (email.isNotEmpty) {
       model.signinUser(email, password, context);
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override

@@ -22,69 +22,72 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        key: _scaffoldKey,
-        drawer: MyDrawer(),
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          // elevation: 1?0,
-          title: Text(
-            'SellerShopName',
-            style: TextStyle(color: mycolor),
+    return ScopedModelDescendant(
+      builder: (BuildContext context, Widget child, MainModel model) {
+        return Scaffold(
+          key: _scaffoldKey,
+          drawer: MyDrawer(
+            model: model,
           ),
-          leading: InkWell(
-            onTap: () {
-              if (_scaffoldKey.currentState.isDrawerOpen) {
-                _scaffoldKey.currentState.openEndDrawer();
-              } else {
-                _scaffoldKey.currentState.openDrawer();
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Image.asset(
-                'assets/splash.png',
-                fit: BoxFit.contain,
-                // scale: 0.5,
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            // elevation: 1?0,
+            title: Text(
+              '${model.currentSellerDetail['shopName']}',
+              style: TextStyle(color: mycolor),
+            ),
+            leading: InkWell(
+              onTap: () {
+                if (_scaffoldKey.currentState.isDrawerOpen) {
+                  _scaffoldKey.currentState.openEndDrawer();
+                } else {
+                  _scaffoldKey.currentState.openDrawer();
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Image.asset(
+                  'assets/splash.png',
+                  fit: BoxFit.contain,
+                  // scale: 0.5,
+                ),
               ),
             ),
           ),
-        ),
-        body: ScopedModelDescendant(
-          builder: (BuildContext context, Widget child, MainModel model) {
-            if (model.allproducts.length == 0) {
-              return Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  FlareActor(
-                    'assets/empty.flr',
-                    animation: 'empty',
-                  ),
-                  Positioned(
-                    top: 500,
-                    right: 10,
-                    left: 10,
-                    bottom: 20,
-                    child: Center(
-                      child: Text(
-                        "You have uploaded any product yet,\nPlease upload to view them here",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.abel(
-                          fontSize: MediaQuery.of(context).size.width * 0.08,
+          body: model.allproducts.length == 0
+              ? Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    FlareActor(
+                      'assets/empty.flr',
+                      animation: 'empty',
+                    ),
+                    Positioned(
+                      top: 500,
+                      right: 10,
+                      left: 10,
+                      bottom: 20,
+                      child: Center(
+                        child: Text(
+                          "You have uploaded any product yet,\nPlease upload to view them here",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.abel(
+                            fontSize: MediaQuery.of(context).size.width * 0.08,
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              );
-            }
-            return ListView.builder(
-              itemCount: model.allproducts.length,
-              itemBuilder: (BuildContext context, int index) => Text("TRyyyyy"),
-            );
-          },
-        ));
+                    )
+                  ],
+                )
+              : ListView.builder(
+                  itemCount: model.allproducts.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      Text("TRyyyyy"),
+                ),
+        );
+      },
+    );
   }
 }

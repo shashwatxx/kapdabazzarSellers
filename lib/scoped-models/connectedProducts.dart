@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -9,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:kapdabazzarsellers/models/product.dart';
 import 'package:kapdabazzarsellers/models/seller.dart';
 import 'package:kapdabazzarsellers/models/order.dart';
+import 'package:kapdabazzarsellers/pages/auth.dart';
 import 'package:kapdabazzarsellers/pages/registerDone.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 mixin ConnectedProductsModel on Model {
   List<Product> _products = [];
   bool isConnected = false;
+  List<String> catgories = ["Ethnic", "New", "Lehsun"];
   Seller _authenticatedSeller;
   bool isAuthenticated = false;
   Map<String, dynamic> currentSellerDetail = {
@@ -26,7 +29,7 @@ mixin ConnectedProductsModel on Model {
   bool isLoading = false;
   DocumentReference docId;
   File file;
-  StorageReference firebaseStorage;
+  // StorageReference firebaseStorage;
   String fileUploadingStatus = "Upload Here";
 
   String localFileUrl = null;
@@ -40,9 +43,9 @@ mixin ProductModel on ConnectedProductsModel {
     return List.from(_products);
   }
 
-  List<Product> get displayedProdcuts {
-    // if(){}
-  }
+  // List<Product> get displayedProdcuts {
+  //   // if(){}
+  // }
   cretesellerinDB(Map<String, dynamic> sellerData, BuildContext context) {
     isLoading = true;
     firestoreReference
@@ -167,6 +170,10 @@ mixin ProductModel on ConnectedProductsModel {
     isLoading = true;
     notifyListeners();
     try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('email', '$email');
+      await prefs.setString('password', '$password');
+
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .catchError((error) {
@@ -193,8 +200,12 @@ mixin ProductModel on ConnectedProductsModel {
         print(user.email.toString());
         notifyListeners();
 
-        if (value.user != null) {
-          Navigator.pushReplacementNamed(context, '/homepage');
+        if (value.user.email == email) {
+          print(value.user.email + "Is athenticated ke peh;e w;a hua");
+          isAuthenticated = true;
+          saveCurrentUserDetails();
+          notifyListeners();
+          Navigator.pushReplacementNamed(context, '/');
         }
       });
       notifyListeners();
@@ -220,11 +231,71 @@ mixin ProductModel on ConnectedProductsModel {
     }
   }
 
-  // getsavedData() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   currentSellerDetail['sellerName'] = prefs.getString('sellerName');
+  void signOut(BuildContext context) async {
+    try {
+      isAuthenticated = false;
+      notifyListeners();
+      SharedPreferences pref = await SharedPreferences.getInstance();
 
-  // }
+      await pref.remove('email');
+      await pref.remove('password');
+      await pref.clear();
+      await _auth.signOut().then((value) {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => AuthPage()));
+      });
+    } catch (e) {
+      print('Error signin out: $e');
+      // return e;
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("$e"),
+          );
+        },
+      );
+    }
+  }
+
+  void autoLogin() async {
+    // print(
+    //   "Lavda mera" + _auth.currentUser()
+    // );
+    FirebaseUser tryh = await _auth.currentUser();
+    // print("${tryh.email}+Yaha email id dikhega");
+
+    if (tryh != null) {
+      isAuthenticated = true;
+      print("${tryh.email}+Yaha email id dikhega");
+      notifyListeners();
+    } else {
+      isAuthenticated = false;
+      notifyListeners();
+    }
+
+    // if (tryh.email == null) {
+    //   // print(
+    //   //   "Lavda mera part 2" + _auth.currentUser().toString(),
+    //   // );
+    //   SharedPreferences prefs = await SharedPreferences.getInstance();
+    //   String email = prefs.getString('email');
+    //   String pass = prefs.getString('password');
+    //   print(email);
+    //   print(pass);
+    //   _auth
+    //       .signInWithEmailAndPassword(email: email, password: pass)
+    //       .then((AuthResult value) {
+    //     if (value.user.email == email) {
+    //       isAuthenticated = true;
+    //       notifyListeners();
+    //     } else {
+    //       isAuthenticated = false;
+    //       notifyListeners();
+    //     }
+    //   });
+    // }
+  }
 
   saveCurrentUserDetails() async {
     if (user == null) return null;
@@ -235,10 +306,10 @@ mixin ProductModel on ConnectedProductsModel {
         .listen(
           (event) => event.documents.forEach(
             (element) async {
-              print(element['email']);
-              print(element['sellerName']);
+              // print(element['email']);
+              // print(element['sellerName']);
               // SharedPreferences prefs = await SharedPreferences.getInstance();
-              // SharedPreferences prefs = await SharedPreferences.getInstance();
+              // SharedPreferences prefs = await SharedPreferences.getInstance()
               // await prefs.setString('sellerName', element['sellerName']);
               // await prefs.setString('email', element['email']);
               // await prefs.setString('sellerId', element['sellerId']);
@@ -246,12 +317,15 @@ mixin ProductModel on ConnectedProductsModel {
               // await prefs.setString('phone', element['phone']);
               // await prefs.setString('shopName', element['shopName']);
               // await prefs.setString('password', element['password']);
-              // currentSellerDetail['email'] = prefs.getString('email');
-              // currentSellerDetail['sellerId'] = prefs.getString('sellerId');
-              // currentSellerDetail['reviewed'] = prefs.getString('reviewed');
-              // currentSellerDetail['phone'] = prefs.getString('phone');
-              // currentSellerDetail['shopName'] = prefs.getString('shopName');
-              // currentSellerDetail['password'] = prefs.getString('password');
+              // prefs.setStringList('key', value)
+              currentSellerDetail = element.data;
+              // currentSellerDetail['email'] = element['email'];
+              // currentSellerDetail['sellerName'] = element['sellerName'];
+              // currentSellerDetail['sellerId'] = element['sellerId'];
+              // currentSellerDetail['reviewed'] = element['reviewed'];
+              // currentSellerDetail['phone'] = element['phone'].;
+              // currentSellerDetail['shopName'] = element['shopName'];
+              // currentSellerDetail['password'] = element['password'];
               notifyListeners();
             },
           ),
@@ -259,6 +333,21 @@ mixin ProductModel on ConnectedProductsModel {
     // print(SellerData);
     notifyListeners();
   }
+
+  fetchCategories() async {
+    QuerySnapshot snapshots =
+        await firestoreReference.collection('categories').getDocuments();
+    // catgories = snapshots.documents;
+    // print(catgories.length);
+    notifyListeners();
+  }
+
+  // addCategories(String category) async {
+  //   firestoreReference
+  //       .collection('categories')
+  //       .document('$category')
+  //       .setData({"Clothing": "Clothing"});
+  // }
 
   void placeOrder() {
     firestoreReference.collection('orders').add(order);
